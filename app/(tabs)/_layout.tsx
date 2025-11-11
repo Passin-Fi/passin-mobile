@@ -14,7 +14,6 @@ export default function TabLayout() {
 
     return (
         <Tabs
-            initialRouteName="index"
             screenOptions={{
                 headerShown: true,
                 header: Header,
@@ -48,7 +47,7 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
-                name="index"
+                name="pools"
                 options={{
                     title: "Pools",
                     tabBarIcon: ({ focused, color }) => <IconSymbol name="pickaxe" color={color} weight={focused ? "medium" : "thin"} />,

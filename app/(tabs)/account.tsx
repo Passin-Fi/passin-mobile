@@ -1,7 +1,8 @@
 import { ScrollView } from "@/components/scroll-view";
+import ThemeToggle from "@/components/theme-toggle";
 import { ThemedText } from "@/components/themed-text";
 import { Fonts } from "@/constants/theme";
-import { Image } from "expo-image";
+import { View } from "react-native";
 
 export default function Account() {
     return (
@@ -12,9 +13,11 @@ export default function Account() {
                     fontFamily: Fonts.rounded,
                 }}
             >
-                Explore
+                Account
             </ThemedText>
-            <Image source={"https://crypto-images-4545f.web.app/images/token/ORAI-lightmode.png"} style={{ width: 70, height: 70, alignSelf: "center", marginTop: 30 }} />
+            <View style={{ marginTop: 24 }}>
+                <ThemeToggle />
+            </View>
         </ScrollView>
     );
 }
