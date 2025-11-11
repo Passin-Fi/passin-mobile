@@ -4,31 +4,22 @@
  */
 
 import { Platform } from "react-native";
-import { darkTheme } from "./theme.dark";
 
 export const navBarHeight = 50;
 export const headerHeight = 55;
 
+/**
+ * Component-specific colors that don't come from theme
+ * Use theme.* for semantic colors (primary, secondary, text, background, etc.)
+ */
 export const Colors = {
     light: {
-        text: "#11181C",
-        background: "#fff",
-        backgroundSecondary: darkTheme.bgSecondaryColor,
-        tint: "#0a7ea4",
-        icon: "#687076",
         tabIconDefault: "#687076",
         tabIconSelected: "#0a7ea4",
-        tabBackgroundColor: "#f9f9f9",
     },
     dark: {
-        text: darkTheme.textPrimaryColor,
-        background: darkTheme.bgPrimaryColor,
-        backgroundSecondary: darkTheme.bgSecondaryColor,
-        tint: darkTheme.primaryColor,
-        icon: darkTheme.textHighlightColor,
-        tabIconDefault: darkTheme.textHighlightColor,
-        tabIconSelected: darkTheme.primaryColor,
-        tabBackgroundColor: darkTheme.bgSecondaryColor,
+        tabIconDefault: "#9BA1A6",
+        tabIconSelected: "#C7FE62",
     },
 };
 

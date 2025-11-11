@@ -5,28 +5,29 @@ import { HapticTab } from "@/components/haptic-tab";
 import Header from "@/components/header";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Colors, navBarHeight } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useTheme } from "@/hooks/use-color-scheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
-    const colorScheme = useColorScheme();
+    const { colorTheme, theme } = useTheme();
     const { top, bottom } = useSafeAreaInsets();
 
     return (
         <Tabs
+            initialRouteName="index"
             screenOptions={{
                 headerShown: true,
                 header: Header,
-                tabBarActiveTintColor: Colors[colorScheme].tabIconSelected,
+                tabBarActiveTintColor: Colors[colorTheme].tabIconSelected,
                 tabBarButton: HapticTab,
                 tabBarStyle: {
-                    backgroundColor: Colors[colorScheme].tabBackgroundColor,
+                    backgroundColor: theme.bgSecondaryColor,
                     borderTopRightRadius: 12,
                     borderTopLeftRadius: 12,
                     position: "absolute",
                 },
                 sceneStyle: {
-                    backgroundColor: Colors[colorScheme].background,
+                    backgroundColor: theme.bgPrimaryColor,
                     paddingBottom: bottom + navBarHeight,
                     paddingTop: top,
                 },

@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 
 import { ScrollView } from "@/components/scroll-view";
+import ThemeToggle from "@/components/theme-toggle";
 import Button from "@/components/ui/button";
 import { Image } from "expo-image";
 
@@ -13,6 +14,7 @@ export default function PoolsPage() {
                 </View>
                 <Button title="Subscribe" />
             </View>
+            <ThemeToggle />
         </ScrollView>
     );
 }

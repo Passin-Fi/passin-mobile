@@ -1,6 +1,5 @@
-import { darkTheme } from "@/constants/theme.dark";
-import { lightTheme } from "@/constants/theme.light";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { ThemeValue } from "@/constants/type";
+import { useTheme } from "@/hooks/use-color-scheme";
 import React from "react";
 import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
 
@@ -18,24 +17,48 @@ interface ButtonProps {
     size?: ButtonSize;
 }
 
+// Cấu hình size styles - static, không phụ thuộc theme
+const sizeStyles: Record<ButtonSize, { height: number; paddingHorizontal: number }> = {
+    small: {
+        height: 32,
+        paddingHorizontal: 10,
+    },
+    medium: {
+        height: 38,
+        paddingHorizontal: 14,
+    },
+    large: {
+        height: 46,
+        paddingHorizontal: 16,
+    },
+};
+
+// Factory function để tạo variant styles dựa trên theme
+const getVariantStyles = (theme: ThemeValue): Record<ButtonVariant, { backgroundColor: string; textColor: string }> => ({
+    primary: {
+        backgroundColor: theme.primaryColor,
+        textColor: theme.bgPrimaryColor,
+    },
+    secondary: {
+        backgroundColor: theme.secondaryColor,
+        textColor: theme.textHighlightColor,
+    },
+});
+
 export default function Button({ onPress, title, children, style, textStyle, disabled = false, variant = "primary", size = "medium" }: ButtonProps) {
-    const colorScheme = useColorScheme();
-    const theme = colorScheme === "dark" ? darkTheme : lightTheme;
+    const { theme } = useTheme();
 
-    // Xác định màu nền và màu chữ theo variant
-    const backgroundColor = variant === "primary" ? theme.primaryColor : theme.secondaryColor;
-    const textColor = variant === "primary" ? theme.bgPrimaryColor : theme.textHighlightColor;
-
-    // Xác định padding và height theo size
-    const sizeStyles = size === "small" ? { height: 32, paddingHorizontal: 12 } : size === "medium" ? { height: 40, paddingHorizontal: 16 } : { height: 50, paddingHorizontal: 20 };
+    const variantStyles = getVariantStyles(theme);
+    const currentVariant = variantStyles[variant];
+    const currentSize = sizeStyles[size];
 
     return (
         <TouchableOpacity
             style={[
                 styles.button,
-                sizeStyles,
+                currentSize,
                 {
-                    backgroundColor: backgroundColor,
+                    backgroundColor: currentVariant.backgroundColor,
                     borderRadius: theme.radius,
                     opacity: disabled ? 0.5 : 1,
                 },
@@ -45,7 +68,7 @@ export default function Button({ onPress, title, children, style, textStyle, dis
             disabled={disabled}
             activeOpacity={0.8}
         >
-            {children || <Text style={[styles.text, { color: textColor }, textStyle]}>{title}</Text>}
+            {children || <Text style={[styles.text, { color: currentVariant.textColor }, textStyle]}>{title}</Text>}
         </TouchableOpacity>
     );
 }

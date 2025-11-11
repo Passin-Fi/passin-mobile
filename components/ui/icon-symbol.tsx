@@ -1,7 +1,7 @@
 // Fallback for using MaterialIcons on Android and web.
 
 import { SymbolWeight } from "expo-symbols";
-import { Camera, ChevronLeft, ChevronRight, FileClock, Home, Pickaxe, Send, UserRound, Wallet } from "lucide-react-native";
+import { Camera, ChevronLeft, ChevronRight, FileClock, Home, Moon, Pickaxe, Send, Settings, Sun, UserRound, Wallet } from "lucide-react-native";
 import { OpaqueColorValue, ViewStyle, type StyleProp } from "react-native";
 
 type IconSymbolName = keyof typeof MAPPING;
@@ -21,6 +21,9 @@ const MAPPING = {
     pickaxe: Pickaxe,
     "file.clock": FileClock,
     wallet: Wallet,
+    "sun.max": Sun,
+    moon: Moon,
+    gear: Settings,
 };
 
 /**
