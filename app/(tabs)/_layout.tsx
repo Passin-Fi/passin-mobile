@@ -2,7 +2,6 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { HapticTab } from "@/components/haptic-tab";
-import Header from "@/components/header";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Colors, navBarHeight } from "@/constants/theme";
 import { useTheme } from "@/hooks/use-color-scheme";
@@ -10,13 +9,12 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
     const { colorTheme, theme } = useTheme();
-    const { top, bottom } = useSafeAreaInsets();
+    const { bottom } = useSafeAreaInsets();
 
     return (
         <Tabs
             screenOptions={{
-                headerShown: true,
-                header: Header,
+                headerShown: false,
                 tabBarActiveTintColor: Colors[colorTheme].tabIconSelected,
                 tabBarButton: HapticTab,
                 tabBarStyle: {
@@ -28,7 +26,6 @@ export default function TabLayout() {
                 sceneStyle: {
                     backgroundColor: theme.bgPrimaryColor,
                     paddingBottom: bottom + navBarHeight,
-                    paddingTop: top,
                 },
             }}
         >

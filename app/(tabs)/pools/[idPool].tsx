@@ -5,12 +5,19 @@ import { StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "@/components/scroll-view";
 import Button from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-color-scheme";
+import Toast from "react-native-toast-message";
 
 export default function PoolDetailPage() {
     const { idPool } = useLocalSearchParams<{ idPool: string }>();
     const router = useRouter();
     const { theme } = useTheme();
-
+    const showToast = () => {
+        Toast.show({
+            type: "error",
+            text1: "Hello",
+            text2: "This is some something 👋",
+        });
+    };
     return (
         <ScrollView style={{ position: "relative", paddingHorizontal: 16, backgroundColor: theme.bgPrimaryColor }}>
             <View style={styles.imageContainer}>
@@ -25,7 +32,7 @@ export default function PoolDetailPage() {
                 <Text style={[styles.infoValue, { color: theme.primaryColor }]}>12.5%</Text>
             </View>
             <View style={{ marginTop: 24 }}>
-                <Button title="Stake" variant="primary" size="large" style={{ width: "100%" }} />
+                <Button title="Stake" variant="primary" size="large" style={{ width: "100%" }} onPress={showToast} />
                 <View style={{ height: 12 }} />
                 <Button title="Unstake" variant="secondary" size="large" style={{ width: "100%" }} />
             </View>
